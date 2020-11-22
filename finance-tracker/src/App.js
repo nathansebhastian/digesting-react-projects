@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import "bootstrap/dist/css/bootstrap.css";
-import "./style.css";
+import "./styles.css";
 
 import Header from "./components/Header";
 import TransactionTable from "./components/TransactionTable";
@@ -22,7 +22,7 @@ export default function App() {
     // },
   ]);
   const [showAddCategory, setShowAddCategory] = useState(true);
-  const [showAddAmount, setShowAddAmount] = useState(false);
+  const [showAddTransaction, setShowAddTransaction] = useState(false);
   const [activeCategory, setActiveCategory] = useState("");
 
   const removeTransaction = (index) => {
@@ -48,16 +48,16 @@ export default function App() {
       />
     );
   }
-  if (showAddAmount) {
+  if (showAddTransaction) {
     return (
       <AddTransaction
         categories={categories}
         setTransactions={setTransactions}
-        setShowAddAmount={setShowAddAmount}
+        setShowAddTransaction={setShowAddTransaction}
       />
     );
   }
-  
+
   return (
     <div className="container">
       <div className="row">
@@ -71,7 +71,7 @@ export default function App() {
       <div className="row">
         <div className="col">
           <TransactionTable
-            setShowAddAmount={setShowAddAmount}
+            setShowAddTransaction={setShowAddTransaction}
             removeTransaction={removeTransaction}
             transactions={filterTransactions(transactions)}
           />

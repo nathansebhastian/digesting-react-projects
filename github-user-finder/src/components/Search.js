@@ -10,10 +10,11 @@ export default function Search() {
 
   useEffect(() => {
     fetchSearch(keyword);
+    // eslint-disable-next-line
   }, []);
 
   const fetchSearch = (keyword) => {
-    let url = `${API}search/users?q=${keyword}`;
+    let url = `${API}search/users?q=${keyword}&per_page=10`;
 
     axios
       .get(url)
@@ -65,21 +66,23 @@ function SearchForm({ keyword, setKeyword, fetchSearch }) {
 
 function UsersList({ users }) {
   if (users) {
-    if (users.message === "Not Found")
+    if (users.message === "Not Found"){
       return (
         <div className="notfound">
-          <h2>Oops !!!</h2>
+          <h2>Oops !!</h2>
           <p>
-            The Component Couldn't Find The You Were Looking For . Try Again{" "}
+            The API couldn't find any user.
+            Try again with a different keyword
           </p>
         </div>
       );
+    }
     else {
       let userList = users.items.map(function (user) {
         return (
           <Link key={user.id} to={"user/" + user.login}>
             <div className="bs-callout bs-callout-info">
-              <img className="user" src={user.avatar_url} />
+              <img className="user" alt="User profile" src={user.avatar_url} />
               <h4>Username : {user.login}</h4>
               <p> Url : {user.html_url}</p>
               <p> Score : {user.score} </p>

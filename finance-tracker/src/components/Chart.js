@@ -15,16 +15,11 @@ export default function Chart({ transactions }) {
     "September",
     "October",
     "November",
-    "December"
+    "December",
   ];
 
   const processTransactions = (transactions, type) => {
-    const months = labels;
     const monthsWithTxs = new Array(12).fill(0);
-
-    for (const month of monthsWithTxs) {
-      monthsWithTxs[month] = 0;
-    }
 
     for (const transaction of transactions) {
       if (!isThisYear(transaction.date)) {
@@ -34,43 +29,43 @@ export default function Chart({ transactions }) {
         continue;
       }
       const monthName = format(transaction.date, "MMMM");
-      const indexOfMonth = months.indexOf(monthName);
+      const indexOfMonth = labels.indexOf(monthName);
       monthsWithTxs[indexOfMonth] += Number(transaction.amount);
     }
 
     return monthsWithTxs;
   };
 
-  const Chartdate = {
+  const chartData = {
     labels,
     datasets: [
       {
         label: "Income",
         backgroundColor: "lightblue",
-        data: processTransactions(transactions, "income")
+        data: processTransactions(transactions, "income"),
       },
       {
         label: "Expense",
         backgroundColor: "lightcoral",
-        data: processTransactions(transactions, "expense")
-      }
-    ]
+        data: processTransactions(transactions, "expense"),
+      },
+    ],
   };
 
   return (
     // <p>Chart</p>
     <Bar
-      data={Chartdate}
+      data={chartData}
       options={{
         title: {
           display: true,
           text: "Your financial data",
-          fontSize: 20
+          fontSize: 20,
         },
         legend: {
           display: true,
-          position: "right"
-        }
+          position: "right",
+        },
       }}
     />
   );

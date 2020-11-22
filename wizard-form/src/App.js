@@ -28,7 +28,7 @@ class MasterForm extends React.Component {
            Password: ${password}`)
   }
   
-  _next = () => {
+  next = () => {
     let currentStep = this.state.currentStep
     currentStep = currentStep >= 2? 3: currentStep + 1
     this.setState({
@@ -36,7 +36,7 @@ class MasterForm extends React.Component {
     })
   }
     
-  _prev = () => {
+  prev = () => {
     let currentStep = this.state.currentStep
     currentStep = currentStep <= 1? 1: currentStep - 1
     this.setState({
@@ -53,7 +53,7 @@ previousButton() {
     return (
       <button 
         className="btn btn-secondary" 
-        type="button" onClick={this._prev}>
+        type="button" onClick={this.prev}>
       Previous
       </button>
     )
@@ -67,7 +67,7 @@ nextButton(){
     return (
       <button 
         className="btn btn-primary float-right" 
-        type="button" onClick={this._next}>
+        type="button" onClick={this.next}>
       Next
       </button>        
     )

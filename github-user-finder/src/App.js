@@ -11,16 +11,16 @@ import Profile from "./components/Profile";
 
 export default function App() {
   return (
-    <div className='container'>
-      <Header />
-      <Router>
+    <Router>
+      <div className="container">
+        <Header />
         <Route exact path="/">
           <Search />
         </Route>
         <Route path="/user/:username">
           <Profile />
         </Route>
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 }

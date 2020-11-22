@@ -4,7 +4,7 @@ import { format } from "date-fns";
 export default function TransactionTable({
   removeTransaction,
   transactions,
-  setShowAddAmount
+  setShowAddTransaction,
 }) {
   return (
     <table className="table table-striped">
@@ -21,7 +21,7 @@ export default function TransactionTable({
           <td colSpan="4">
             <button
               className="btn btn-success"
-              onClick={() => setShowAddAmount(true)}
+              onClick={() => setShowAddTransaction(true)}
             >
               Add new transaction
             </button>

@@ -4,7 +4,7 @@ export default function Header({
   categories,
   activeCategory,
   setShowAddCategory,
-  setActiveCategory
+  setActiveCategory,
 }) {
   return (
     <ul className="navbar navbar-expand flex-row w-100 list-unstyled">

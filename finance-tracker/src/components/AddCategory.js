@@ -5,14 +5,15 @@ export default function AddCategory({ setCategories, setShowAddCategory }) {
   const [name, setName] = useState("");
   const [selectedType, setSelectedType] = useState("income");
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (!name) {
       alert("Enter a category");
       return;
     }
     const category = {
       name,
-      type: selectedType
+      type: selectedType,
     };
 
     setCategories((currentState) => [...currentState, category]);
@@ -25,11 +26,11 @@ export default function AddCategory({ setCategories, setShowAddCategory }) {
         <div className="card-body">
           <h1>Enter a category for transactions</h1>
           <p>
-            E.g. 'Electricity' or 'Gas' or 'Salary' with type of "income" or
-            "expense"
+            E.g. 'Electricity' or 'Gas' or 'Salary' with type of 'income' or
+            'expense'
           </p>
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
+          <form className="form-inline" onSubmit={handleSubmit}>
+            <div className="form-group mb-2">
               <input
                 className="form-control"
                 value={name}
@@ -37,7 +38,7 @@ export default function AddCategory({ setCategories, setShowAddCategory }) {
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-            <div className="form-group">
+            <div className="form-group mx-sm-3 mb-2">
               <select
                 className="form-control"
                 value={selectedType}
@@ -52,7 +53,7 @@ export default function AddCategory({ setCategories, setShowAddCategory }) {
                 })}
               </select>
             </div>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary mb-2">
               Submit
             </button>
           </form>
